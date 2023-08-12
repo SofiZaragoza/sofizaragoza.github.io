@@ -121,6 +121,7 @@ function obtenerJsonPropio(){
         <tr>
             <td>${past2023.month}</td>
             <td>${past2023.budget}</td>
+        </tr>
         `;
         });
     })    
