@@ -34,8 +34,12 @@ function submitIncome() {
         ev.preventDefault();
         submitIncome()
         const incomeinput = document.getElementById("incomeinput");
-        incomeinput.style.color = "red";
+        incomeinput.style.color = "green";
+        const firstbudget = document.getElementById("totalbudget");
+        firstbudget.textContent = `Current Budget: ${campoIncome}`;
     })
+
+
     
 
 let sumadegastos = 0; 
@@ -72,7 +76,8 @@ function submitExpense() {
     }
 }
 //fuera de la función valido el submit con un eventlistener para que funcione el boton
-//Calculo el budget final tomando el total de gastos y restandolo al income
+// falta cambiar todos los altert por stringy
+//cambiar la posición del income
 
 formExpense.addEventListener("submit",(ev) =>{
     ev.preventDefault();
@@ -108,10 +113,20 @@ function obtenerJsonPropio(){
     const URLJSON = "/months.json";
     fetch(URLJSON)
     .then( resp => resp.json())
-    .then( data => console.log(data.past2023))
-    
+    .then( data => {
+        console.log(data.past2023);
+        const mesesPasados = data.past2023;
+        mesesPasados.forEach(mes => {
+        document.getElementById("past2023").innerHTML += `
+        <tr>
+            <td>${past2023.month}</td>
+            <td>${past2023.budget}</td>
+        `;
+        });
+    })    
 }
-    obtenerJsonPropio();
+    
+obtenerJsonPropio();
     
         /*const mesesPasados = data.past2023;
         mesesPasados.forEach(mes => {
@@ -122,7 +137,7 @@ function obtenerJsonPropio(){
             `;
         });
         })
-        .catch((error) => console.log(error));*/
+        */
         
     /*inyeccion al dom
     console.log(data);
