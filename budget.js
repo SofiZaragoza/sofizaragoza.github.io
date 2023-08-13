@@ -116,11 +116,12 @@ function obtenerJsonPropio(){
     .then( data => {
         console.log(data.past2023);
         const mesesPasados = data.past2023;
+        console.log(mesesPasados);
         mesesPasados.forEach(monthData => {
         document.getElementById("past2023").innerHTML += `
         <tr>
             <td>${monthData.month}</td>
-            <td>${monthData.budget}</td>
+            <td>${monthData.totalbudget}</td>
         </tr>
         `;
         });
