@@ -122,7 +122,7 @@ function obtenerJsonPropio(){
         document.getElementById("past2023").innerHTML += `
         <tr>
             <td>${past2023.month}</td>
-            <td>${past2023.totalbudget}</td>
+            <td>${past2023.budget}</td>
         </tr>
         `;
         });
