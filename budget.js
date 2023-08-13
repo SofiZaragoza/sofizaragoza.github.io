@@ -117,16 +117,15 @@ function obtenerJsonPropio(){
         console.log(data.past2023); //all the data of the json (array 5)
         const mesesPasados = data.past2023;
         console.log(mesesPasados); // check the const it´s OK 
-        mesesPasados.forEach(monthData => {
-            console.log(monthData);})
-        /*document.getElementById("past2023").innerHTML += `
+        mesesPasados.forEach(past2023 => {
+            console.log(monthData);
+        document.getElementById("past2023").innerHTML += `
         <tr>
-            <td>${monthData.month}</td>
-            <td>${monthData.totalbudget}</td>
+            <td>${past2023.month}</td>
+            <td>${past2023.totalbudget}</td>
         </tr>
         `;
         });
-    // })  */  
     });
 }
     
