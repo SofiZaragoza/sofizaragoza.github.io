@@ -118,7 +118,6 @@ function obtenerJsonPropio(){
         const mesesPasados = data.past2023;
         console.log(mesesPasados); // check the const it´s OK 
         mesesPasados.forEach(past2023 => {
-            console.log(monthData);
         document.getElementById("past2023").innerHTML += `
         <tr>
             <td>${past2023.month}</td>
