@@ -35,7 +35,7 @@
             #totalbudget-container {
             position: absolute;
             top: 130px;
-            right: 150px;
+            right: 300px;
             background-color: #f2f2f2;
             padding: 5px 10px;
             border: 1px solid #a9a5a5;
@@ -85,7 +85,7 @@
     <div class="container mt-5">
         <h1>Expense Tracker</h1>
         <br>
-        <h2>Place your Income:</h2> 
+        <h2>Place your Income</h2> 
         <form id="incomeform">
         <label for="ingresos" id="incomeLabel">
             <input type="text" id="incomeinput" name="incomeinput" placeholder="$$">
@@ -147,7 +147,7 @@
         <h5 id="totalexpensemonth" placeholder="$$" > Total Expense:</h5>
         <br>
         <div id="totalbudget-container">
-        <h5 id="totalbudget"> Current Budget:</h5>
+        <h5 id="totalbudget"> Current Budget: $</h5>
         </div>
         <br>
         <div id="delete-box"> 
@@ -161,6 +161,7 @@
                 <thead>
                     <tr>
                         <th>Month</th>
+                        <th>Total Expenses</th>
                         <th>Budget</th>
                     </tr>
                 </thead>

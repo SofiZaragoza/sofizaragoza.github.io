@@ -36,7 +36,7 @@ function submitIncome() {
         const incomeinput = document.getElementById("incomeinput");
         incomeinput.style.color = "green";
         const firstbudget = document.getElementById("totalbudget");
-        firstbudget.textContent = `Current Budget: ${campoIncome}`;
+        firstbudget.textContent = `Current Budget:$ ${campoIncome}`;
     })
 
 
@@ -87,7 +87,7 @@ formExpense.addEventListener("submit",(ev) =>{
     const totalbudget = calculatebudget (campoIncome,sumadegastos);
 
     const totalbudgetelement = document.getElementById("totalbudget");
-    totalbudgetelement.textContent = `Current Budget: ${totalbudget}`;
+    totalbudgetelement.textContent = `Current Budget: $ ${totalbudget}`;
 
     console.log(totalbudget);
 })
@@ -121,6 +121,7 @@ function obtenerJsonPropio(){
         document.getElementById("past2023").innerHTML += `
         <tr>
             <td>${past2023.month}</td>
+            <td>${past2023.expenses}</td>
             <td>${past2023.budget}</td>
         </tr>
         `;
