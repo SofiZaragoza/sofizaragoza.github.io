@@ -18,6 +18,7 @@ class expense {
 
 let campoIncome = 0; // Declare campoIncome fuera de la función para utilizarlo después
 
+
 function submitIncome() {
     // Get the input value + pareafloat
     campoIncome = parseFloat(document.getElementById("incomeinput").value);
@@ -41,12 +42,17 @@ function submitIncome() {
         ev.preventDefault();
         submitIncome()
         const incomeinput = document.getElementById("incomeinput");
-        incomeinput.style.color = "green";
+        incomeinput.style.backgroundColor = "lightgrey";
         const firstbudget = document.getElementById("totalbudget");
         firstbudget.textContent = `Current Budget:$ ${campoIncome}`;
     })
 
-let sumadegastos = 0; //hacemos una función submitexpense para crear los datos, validar los datos y renderizarlo en una tabla.
+
+
+let sumadegastos = JSON.parse(localStorage.getItem('totalexpense')) || [];
+    if (sumadegastos != 0) {
+    sumadegastos = JSON.parse(localStorage.getItem('totalexpense'));
+    } //estoy intentando renderizar el total de gastos (total expense) y hay algo que me falta y no se refelja correctamente.
 
 function submitExpense() {
     let username = document.getElementById("userName").value;
@@ -70,8 +76,8 @@ function submitExpense() {
         console.log("testing de gastos "+ sumadegastos);
         const totalExpenseElement = document.getElementById("totalexpensemonth");
         totalExpenseElement.textContent = `Total Expense:$ ${sumadegastos}`;
+        localStorage.setItem('totalexpense', JSON.stringify(sumadegastos)); //store the total expenses 
         localStorage.setItem('expenses', JSON.stringify(Expenselist)); // Store expenses in local storage con STRING
-
         
         tablaexpense.innerHTML +=`
         <tr>
@@ -84,8 +90,6 @@ function submitExpense() {
     }
 }
 //fuera de la función valido el submit con un eventlistener para que funcione el boton
-// falta cambiar todos los altert por stringy
-//cambiar la posición del income
 
 formExpense.addEventListener("submit",(ev) =>{
     ev.preventDefault();
@@ -100,23 +104,37 @@ formExpense.addEventListener("submit",(ev) =>{
     console.log(totalbudget);
 })
 
-let finalizarBtn = document.getElementById('deleteData');
+    //renderizamos la tabla de gastos para cuando le damos refresh 
 
+    let renderizarExpenses = JSON.parse(localStorage.getItem('expenses')) || [];
+    if (renderizarExpenses.length != 0){
+        for(const Expense of renderizarExpenses){
+         tablaexpense.innerHTML +=`
+            <tr>
+                <td>${Expense.Name}</td>
+                <td>${Expense.Expname}</td>
+                <td>${Expense.Etype}</td>
+                <td>${Expense.Amount}</td>
+            </tr>
+        `; 
+        }
+    }
+
+let finalizarBtn = document.getElementById('deleteData');
+//eliminamos toda la data de storage y la información que populamos anteriormente
 finalizarBtn.onclick = () => {
     document.getElementById("incomeinput").value = "";
-    Expenselist.length = 0; // I cannot re-declare a const in the JS
+    Expenselist.length = 0; // cannot re-declare a const in the JS, lo establezco en cero
     document.getElementById("tablaexpense").innerHTML = "";
     document.getElementById("totalexpensemonth").textContent = `Total Expense:$` + "";
     document.getElementById("totalbudget").textContent = `Current Budget:`+ "";
     localStorage.removeItem('income'); // Clear stored income
     localStorage.removeItem('expenses'); // Clear stored expenses
+    localStorage.removeItem('totalexpense');
     
 }
 
-//me falta renderizar toda la tabla para cuando cerramos la pestaña y queremos recupaerar la data del storage
-//me falta eliminar gastos que no quiera durante el mes > afterlass con el tacho de basura
-
-// REVISAR LA CLASE ENTERA Y VER SI TIENE SENTIDO ESTO. TENGO QUE HACER UN GET CON JSON
+// Conexión con Json interno (no encontre algo en la API)
 function obtenerJsonPropio(){
     const URLJSON = "/months.json";
     fetch(URLJSON)
